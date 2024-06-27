@@ -1,7 +1,9 @@
 # Liquor Inventory Restocking Predictions Project
 
-![image](https://github.com/joeldmott/inventory_project/assets/51928528/39641d3f-b415-4528-bd5d-f1317a1b8dfb)
-photo by Nikolay Loubet on [Unsplash](https://unsplash.com/photos/three-bottles-of-whisky-are-lined-up-on-a-shelf-O6QTgEbwimc)
+![image](https://github.com/joeldmott/inventory_project/assets/51928528/2dca376c-3eea-4309-8948-00ea3ef46ecf)
+
+photo by Bernd Dittrich on [Unsplash](https://unsplash.com/photos/a-row-of-bottles-of-whiskey-sitting-on-a-shelf-5h3a4N2jqhg)
+
 
 ## project summary ('elevator pitch')
 
@@ -49,6 +51,11 @@ Time and hardware constraints limit this project to univariate modeling. With so
 
 ## evaluation
 
-Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (SA)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but one of the category models is above 94% accurate.
+Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (SA)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but one of the category models is above 94% accurate. The main points of this project and all important visualizations can be found in the [presentation here](https://github.com/joeldmott/inventory_project/blob/main/presentation.pdf).
 
 ## repository structure
+├── README.md
+
+├── inventory_restocking_project.ipynb
+
+└── presentation.pdf
