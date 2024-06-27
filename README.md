@@ -19,7 +19,7 @@ As eager as I was to work with all this data, the limitations of my own hardware
 
 ![image](https://github.com/joeldmott/inventory_project/assets/51928528/a99cca9a-3b91-42cc-9d77-7592edfdce6c)
 
-Subsequently, the data used here is [a snapshot of this store's sales as of June 2024 with some columns that were not relevant to iventory removed](https://www.kaggle.com/datasets/joelmott/liquor-inventory-dataset). Instead of going all the way back to 2012, I went to 2017. In order to keep the inventory forecasting on an annual scale, the data is cut off at the end of 2023 and then forecasts are made for all of 2024.
+Subsequently, the data used here is [a snapshot of this store's sales as of June 2024 with some columns that were not relevant to inventory removed](https://www.kaggle.com/datasets/joelmott/liquor-inventory-dataset). Also, instead of going all the way back to 2012, I only went as far back as 2017. In order to keep the inventory forecasting on an annual scale, the data is cut off at the end of 2023 and then forecasts are made for all of 2024.
 
 ## reproducing the project
 
@@ -37,7 +37,7 @@ While there are definitely multiple factors that influence restocking, this proj
 
 Specifically, I group the data by date and resample by week (since some dates are missing for holidays). Therefore, the forecasted deliverable will feature 52 predictions, one for every week of 2024.
 
-This dataset contains 52 unique categories of liquor, which is somewhat impractical for this inquiry. I generalized them into 18 categories in an attempt to make broader predictions with more robust data without sacrificing too much granularity.
+This dataset contains over 50 unique categories of liquor, which is somewhat impractical for this inquiry. I generalized them into 18 categories in an attempt to make broader predictions with more robust data without sacrificing too much granularity.
 
 Before modeling, each subset of the data undergoes a time-series split with five of the six total years used to train the models and the last year (2023) set aside as a test set as seen here in the first model evaluation on the overall volume (all categories): 
 
