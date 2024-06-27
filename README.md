@@ -7,15 +7,17 @@ photo by Nikolay Loubet on [Unsplash](https://unsplash.com/photos/three-bottles-
 
 Inventory restocking walks a fine line between overstocking and a stockout while navigating shifting levels in demand all year.
 
-This project uses ARIMA and SARIMA time-series models to predict liquor inventory volume throughout 2024 for Iowa’s [busiest liquor retailer](https://www.hy-vee.com/stores/detail.aspx?s=49) using data from [Iowa’s open data platform](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). After optimizing models on the overall liquor inventory for this store, category-specific models predict which types of liquor to restock throughout the year via streamlined functions.
+This project uses ARIMA and SARIMA time-series models to predict liquor inventory volume throughout 2024 for Iowa’s [busiest liquor retailer](https://www.hy-vee.com/stores/detail.aspx?s=49) using data from [Iowa’s open data platform](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). I first optimize a model on the overall liquor inventory for this store.
 
-While accuracy varies depending on the category, all but one category predictions are above 94% accurate.
+Next, category-specific models predict which types of liquor to restock throughout the year via streamlined functions. While accuracy varies depending on the category, all but one category predictions are above 94% accurate.
 
 ##  dataset
 
 Iowa's open data project has kept track of all liquor retailer sales since 2012. As of June 2024, this data contains well over 29 million records (each record is a B2B or B2C transaction) with 24 columns pertaining to the date, store, location, liquor category & item, amount and volume of bottles per sale, and sale amount.
 
-As eager as I was to work with all this data, the limitations of my own hardware and Google Colab as well as the relatively slower pace of the time-series models used here ((S)ARIMA) kept the scope of this project to one store (the busiest one, a Hy-Vee Grocery Supermaket on 14th Street in Des Moines).
+As eager as I was to work with all this data, the limitations of my own hardware and Google Colab as well as the relatively slower pace of the time-series models used here ((S)ARIMA) kept the scope of this project to one store (the busiest one, a Hy-Vee Grocery Supermaket on 14th Street in Des Moines):
+
+![image](https://github.com/joeldmott/inventory_project/assets/51928528/a99cca9a-3b91-42cc-9d77-7592edfdce6c)
 
 Subsequently, the data used here is [a snapshot of this store's sales as of June 2024 with some columns that were not relevant to iventory removed](https://www.kaggle.com/datasets/joelmott/liquor-inventory-dataset). Instead of going all the way back to 2012, I went to 2017. In order to keep the inventory forecasting on an annual scale, the data is cut off at the end of 2023 and then forecasts are made for all of 2024.
 
@@ -37,7 +39,9 @@ Specifically, I group the data by date and resample by week (since some dates ar
 
 This dataset contains 52 unique categories of liquor, which is somewhat impractical for this inquiry. I generalized them into 18 categories in an attempt to make broader predictions with more robust data without sacrificing too much granularity.
 
-Before modeling, each subset of the data undergoes a time-series split with five of the six total years used to train the models and the last year (2023) set aside as a test set.
+Before modeling, each subset of the data undergoes a time-series split with five of the six total years used to train the models and the last year (2023) set aside as a test set as seen here in the first model evaluation on the overall volume (all categories): 
+
+![image](https://github.com/joeldmott/inventory_project/assets/51928528/cb9e23ce-1efe-4949-bf44-3cde3a078521)
 
 ## modeling
 
