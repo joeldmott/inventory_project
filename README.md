@@ -11,7 +11,7 @@ Inventory restocking walks a fine line between overstocking and a stockout while
 
 This project uses ARIMA and SARIMA time-series models to predict liquor inventory volume throughout 2024 for Iowa’s [busiest liquor retailer](https://www.hy-vee.com/stores/detail.aspx?s=49) using data from [Iowa’s open data platform](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). I first optimize a model on the overall liquor inventory for this store.
 
-Next, category-specific models predict which types of liquor to restock throughout the year via streamlined functions. While accuracy varies depending on the category, all but one category predictions are above 94% accurate.
+Next, category-specific models predict which types of liquor to restock throughout the year via streamlined functions. While RMSE varies depending on the category, all but two category test RMSE scores are relatively close to their training set counterpart.
 
 ##  dataset
 
@@ -51,7 +51,11 @@ Time and hardware constraints limit this project to univariate modeling. With so
 
 ## evaluation
 
-Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (SA)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but one of the category models is above 94% accurate. The main points of this project and all important visualizations can be found in the [presentation here](https://github.com/joeldmott/inventory_project/blob/main/presentation.pdf).
+Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (SA)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but two of the category models are relatively close to that of the training set. 
+
+![image](https://github.com/joeldmott/inventory_project/assets/51928528/1718a8c9-40cd-4f32-8dd8-8b406acde83f)
+
+The main points of this project and all important visualizations can be found in the [presentation here](https://github.com/joeldmott/inventory_project/blob/main/presentation.pdf).
 
 ## repository structure
 ├── .gitignore
