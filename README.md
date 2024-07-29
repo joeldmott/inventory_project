@@ -7,17 +7,15 @@ photo by Bernd Dittrich on [Unsplash](https://unsplash.com/photos/a-row-of-bottl
 
 ## project summary ('elevator pitch')
 
-Inventory restocking walks a fine line between overstocking and a stockout while navigating shifting levels in demand all year.
+Inventory restocking walks a fine line between overstocking and a stockout while navigating shifting levels in demand all year. This project uses ARIMA and SARIMA time-series models to predict liquor inventory volume throughout 2024 for Iowa’s [busiest liquor retailer](https://www.hy-vee.com/stores/detail.aspx?s=49) using data from [Iowa’s open data platform](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). 
 
-This project uses ARIMA and SARIMA time-series models to predict liquor inventory volume throughout 2024 for Iowa’s [busiest liquor retailer](https://www.hy-vee.com/stores/detail.aspx?s=49) using data from [Iowa’s open data platform](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). I first optimize a model on the overall liquor inventory for this store.
-
-Next, category-specific models predict which types of liquor to restock throughout the year via streamlined functions. While RMSE varies depending on the category, all but two category test RMSE scores are relatively close to their training set counterpart.
+I first optimize a model on the overall liquor inventory for this store. Next, category-specific models predict which types of liquor to restock throughout the year via streamlined functions. While RMSE varies depending on the category, all but two category test RMSE scores are relatively close to their training set counterpart.
 
 ##  dataset
 
 Iowa's open data project has kept track of all liquor retailer sales since 2012. As of June 2024, this data contains well over 29 million records (each record is a B2B or B2C transaction) with 24 columns pertaining to the date, store, location, liquor category & item, amount and volume of bottles per sale, and sale amount.
 
-As eager as I was to work with all this data, the limitations of my own hardware and Google Colab as well as the relatively slower pace of the time-series models used here ((S)ARIMA) kept the scope of this project to one store (the busiest one, a Hy-Vee Grocery Supermaket on 14th Street in Des Moines):
+As eager as I was to work with all this data, the limitations of my own hardware and Google Colab as well as the relatively slower pace of the time-series models used here kept the scope of this project to one store (the busiest one, a Hy-Vee Grocery Supermaket on 14th Street in Des Moines):
 
 ![image](https://github.com/joeldmott/inventory_project/assets/51928528/a99cca9a-3b91-42cc-9d77-7592edfdce6c)
 
@@ -35,13 +33,13 @@ I also learned more about different kinds of liquor (I confess I had no idea wha
 
 ## preprocessing
 
-While there are definitely multiple factors that influence restocking, this project focuses on what we can learn from this dataset: historical inventory data. Subsequently, I focus on the 'Date' and 'Bottles Sold' columns. After a broader model that examines all liquor inventory, I also examine popular individual categories.
+While there are definitely multiple factors that influence restocking, this project focuses on what we can learn from this dataset: historical inventory data. Subsequently, I focus on the 'Date' and 'Bottles Sold' columns. After a broader model examines all liquor inventory, I also look into popular individual categories.
 
-Specifically, I group the data by date and resample by week (since some dates are missing for holidays). Therefore, the forecasted deliverable will feature 52 predictions, one for every week of 2024.
+Specifically, I group the data by date and resample by week (since some dates are missing for holidays). Therefore, the forecast deliverable will feature 52 predictions, one for every week of 2024.
 
 This dataset contains over 50 unique categories of liquor, which is somewhat impractical for this inquiry. I generalized them into 18 categories in an attempt to make broader predictions with more robust data without sacrificing too much granularity.
 
-Before modeling, each subset of the data undergoes a time-series split with five of the six total years used to train the models and the last year (2023) set aside as a test set as seen here in the first model evaluation on the overall volume (all categories): 
+Before modeling, each subset of the data undergoes a time-series split with five of the six total years used to train the models. The last year (2023) is set aside as a test set as seen here in the first model evaluation on the overall volume (all categories): 
 
 ![image](https://github.com/joeldmott/inventory_project/assets/51928528/cb9e23ce-1efe-4949-bf44-3cde3a078521)
 
@@ -51,7 +49,7 @@ Time and hardware constraints limit this project to univariate modeling. With so
 
 ## evaluation
 
-Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (SA)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but two of the category models are relatively close to that of the training set. 
+Both the Akaike Information Criterion (AIC) and root mean squared error (RMSE) are important metrics for (S)ARIMA models. At first, I priveledged the AIC since it balances accuracy with model complexity. However, it proved to be a bigger help in terms of optimizing the models rather than evaluating them. Therefore, the primary evaluation metric used here is RMSE. The test set RMSE for the whole inventory model as well as all but two of the category models are relatively close to that of the training set. 
 
 ![image](https://github.com/joeldmott/inventory_project/assets/51928528/1718a8c9-40cd-4f32-8dd8-8b406acde83f)
 
